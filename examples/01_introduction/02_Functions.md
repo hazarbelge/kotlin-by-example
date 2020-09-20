@@ -22,7 +22,9 @@ fun main() {
     printMessageWithPrefix("Hello", "Log")                              // 6
     printMessageWithPrefix("Hello")                                     // 7
     printMessageWithPrefix(prefix = "Log", message = "Hello")           // 8
-    println(sum(1, 2))                                                  // 9
+    println("1 + 2 = " + sum(1, 2))                                     // 9
+    val multiply = multiply(2, 3)										// 10
+    println("2 * 3 = $multiply")                                        // 11
 }
 ```
 
@@ -35,6 +37,8 @@ fun main() {
 7. Calls the same function omitting the second one. The default value `Info` is used. 
 8. Calls the same function using [named arguments](https://kotlinlang.org/docs/reference/functions.html#named-arguments) and changing the order of the arguments.
 9. Prints the result of a function call.
+10. Creates immutable variable.
+11. The sign '$' allows you to put variables in string directly. 
 
 ### Infix Functions
 
@@ -50,7 +54,7 @@ fun main() {
   println(pair)
 
   infix fun String.onto(other: String) = Pair(this, other)   // 4
-  val myPair = "McLaren" onto "Lucas"
+  val myPair = "McLaren".onto("Lucas")
   println(myPair)
 
   val sophia = Person("Sophia")
@@ -82,18 +86,20 @@ fun main() {
 //sampleStart
   operator fun Int.times(str: String) = str.repeat(this)       // 1
   println(2 * "Bye ")                                          // 2
+  println(2.times("Bye "))									   // 3
 
-  operator fun String.get(range: IntRange) = substring(range)  // 3
+  operator fun String.get(range: IntRange) = substring(range)  // 4
   val str = "Always forgive your enemies; nothing annoys them so much."
-  println(str[0..14])                                          // 4
+  println(str[0..14])                                          // 5
 //sampleEnd
 }
 ```
 
 1. This takes the infix function from above one step further using the `operator` modifier.
 2. The operator symbol for `times()` is `*` so that you can call the function using `2 * "Bye"`.
-3. An operator function allows easy range access on strings.
-4. The `get()` operator enables [bracket-access syntax](https://kotlinlang.org/docs/reference/operator-overloading.html#indexed).
+3. Same idea with 2. 
+4. An operator function allows easy range access on strings.
+5. The `get()` operator enables [bracket-access syntax](https://kotlinlang.org/docs/reference/operator-overloading.html#indexed).
 
 ### Functions with `vararg` Parameters
 
